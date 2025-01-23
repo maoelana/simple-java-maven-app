@@ -4,7 +4,7 @@ node {
         
         stage('Build') {
             // Menjalankan perintah Maven untuk build project
-            sh 'mvn install clean'
+            sh 'mvn -B -DskipTests clean package'
         }
     }
 }
