@@ -11,14 +11,6 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
-        System.out.println(MESSAGE);
     }
 
     public String getMessage() {
