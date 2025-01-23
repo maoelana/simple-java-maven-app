@@ -3,15 +3,10 @@ node {
     docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside() {
         
         stage('Checkout') {
-            checkout scmGit(
-                branches: 
-                    [[name: '*/master']], 
-                    extensions: [], 
-                    userRemoteConfigs: 
-                    [[url: 'https://github.com/maoelana/simple-java-maven-app.git']]
-            )
+            // Melakukan checkout kode dari repository Git
+            checkout scm
         }
-        
+
         stage('Build') {
             // Menjalankan Maven untuk mem-build project tanpa menjalankan test
             sh 'mvn -B -DskipTests clean package'
