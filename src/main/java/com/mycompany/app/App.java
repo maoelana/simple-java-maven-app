@@ -18,6 +18,7 @@ public class App {
         System.out.println(MESSAGE);
         System.out.println(MESSAGE);
         System.out.println(MESSAGE);
+        System.out.println(MESSAGE);
     }
 
     public String getMessage() {
