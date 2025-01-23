@@ -1,6 +1,6 @@
 node {
     // Install maven
-    docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside('-p 3000:3000') {
+    docker.image('maven:3.9.9-eclipse-temurin-17-alpine') {
 
         stage('Checkout') {
             checkout scmGit(
@@ -8,7 +8,7 @@ node {
                     [[name: '*/master']], 
                     extensions: [], 
                     userRemoteConfigs: 
-                    [[url: '/home/Code/belajar-jenkins/simple-java-maven-app']]
+                    [[url: 'https://github.com/maoelana/simple-java-maven-app.git']]
             )
         }
 
