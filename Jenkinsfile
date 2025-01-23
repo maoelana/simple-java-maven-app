@@ -1,6 +1,6 @@
 node {
     // Install maven
-    docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside('-p 3000:3000') { dockerContainer ->
+    docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside('-p 3000:3000') {
         
         stage('Build') {
             // Perintah Maven untuk build project
