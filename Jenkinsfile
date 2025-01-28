@@ -19,6 +19,7 @@ node {
 
         stage('Deploy') {
             sh './jenkins/scripts/deliver.sh'
+            sleep time: 1, unit: 'MINUTES'
         }
     }
 
