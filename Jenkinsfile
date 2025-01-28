@@ -22,7 +22,11 @@ node {
         }
 
         stage('Deploy') {
-            sh './jenkins/scripts/deliver.sh'
+            docker.image("eclipse-temurin-17-alpine").inside {
+
+                sh './jenkins/scripts/deliver.sh'
+            }
+
             sleep time: 1, unit: 'MINUTES'
         }
     }
