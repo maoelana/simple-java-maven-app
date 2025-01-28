@@ -17,6 +17,10 @@ node {
             sh 'mvn test'
         }
 
+        stage('Manual Approval') {
+            input 'Lanjutkan ke tahap Deploy?'
+        }
+
         stage('Deploy') {
             sh './jenkins/scripts/deliver.sh'
             sleep time: 1, unit: 'MINUTES'
