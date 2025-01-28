@@ -16,6 +16,10 @@ node {
             // Menjalankan test dengan Maven
             sh 'mvn test'
         }
+
+        stage('Deploy') {
+            sh 'echo "Deploy"'
+        }
     }
 
 }
