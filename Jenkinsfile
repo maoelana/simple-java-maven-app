@@ -18,7 +18,7 @@ node {
         }
 
         stage('Deploy') {
-            sh './jenkins/scripts/delivery.sh'
+            sh './jenkins/scripts/deliver.sh'
         }
     }
 
