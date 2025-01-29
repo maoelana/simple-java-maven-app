@@ -22,9 +22,8 @@ node {
         }
 
         stage('Deploy') {
-            withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access')]) {
-                sh 'pwd'
-                sh 'ssh -o StrictHostKeyChecking=no ec2-user@13.229.198.145 "pwd"'
+            withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access', keyFileVariable: 'SSH_KEY')]) {
+                sh 'ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" ec2-user@13.229.198.145 "pwd"'
             }
             sleep time: 1, unit: 'MINUTES'
         }
