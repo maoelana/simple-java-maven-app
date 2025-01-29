@@ -24,7 +24,7 @@ node {
         stage('Deploy') {
             withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access')]) {
 
-                sh 'ssh ec2-user@13.229.198.145 'bash -s' < ./jenkins/scripts/deliver.sh'
+                sh 'ssh ec2-user@13.229.198.145 "bash -s" < ./jenkins/scripts/deliver.sh'
             }
             
             sleep time: 1, unit: 'MINUTES'
