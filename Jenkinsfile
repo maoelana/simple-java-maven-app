@@ -22,7 +22,11 @@ node {
         }
 
         stage('Deploy') {
-            sh 'ssh ec2-user@13.229.198.145 "java -version"'            
+            withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access')]) {
+                sh 'pwd'
+                sh 'ssh ec2-user@13.229.198.145'
+                sh 'pwd'
+            }
             sleep time: 1, unit: 'MINUTES'
         }
     }
