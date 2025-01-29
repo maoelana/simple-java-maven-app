@@ -22,11 +22,11 @@ node {
         }
 
         stage('Deploy') {
-            docker.image("eclipse-temurin-17-alpine").inside {
+            sshagent(['ec2-access']) {
 
-                sh './jenkins/scripts/deliver.sh'
+                sh 'ssh ec2-user@13.229.198.145 'bash -s' < ./jenkins/scripts/deliver.sh'
             }
-
+            
             sleep time: 1, unit: 'MINUTES'
         }
     }
