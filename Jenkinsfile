@@ -20,12 +20,14 @@ node {
         stage('Manual Approval') {
             input 'Lanjutkan ke tahap Deploy?'
         }
+    }
+}
 
-        node('agent-ec2') {
-            stage('Deploy') {
-                sh './jenkins/scripts/deliver.sh'
-                sleep time: 1, unit: 'MINUTES'
-            }
+node('agent-ec2') {
+    docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside() {
+        stage('Deploy') {
+            sh './jenkins/scripts/deliver.sh'
+            sleep time: 1, unit: 'MINUTES'
         }
     }
 }
