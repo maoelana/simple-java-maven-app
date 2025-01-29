@@ -22,12 +22,10 @@ node {
         }
 
         stage('Deploy') {
-            withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access', keyFileVariable: 'SSH_KEY')]) {
-                sh 'ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" ubuntu@54.179.37.98'
-                sh 'scp -o StrictHostKeyChecking=no -i "$SSH_KEY" target/my-app-1.0-SNAPSHOT.jar ec2-user@54.179.37.98:/apps/my-app-1.0-PROD.jar'
+            node('agent-ec2') {
+                sh './jenkins/scripts/deliver.sh'
+                sleep time: 1, unit: 'MINUTES'
             }
-            sleep time: 1, unit: 'MINUTES'
         }
     }
-
 }
