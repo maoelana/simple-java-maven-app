@@ -21,8 +21,8 @@ node {
             input 'Lanjutkan ke tahap Deploy?'
         }
 
-        stage('Deploy') {
-            node('agent-ec2') {
+        node('agent-ec2') {
+            stage('Deploy') {
                 sh './jenkins/scripts/deliver.sh'
                 sleep time: 1, unit: 'MINUTES'
             }
