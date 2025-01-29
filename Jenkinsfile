@@ -24,7 +24,7 @@ node {
         stage('Deploy') {
             withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access', keyFileVariable: '')]) {
                 
-                sh 'ssh ec2-user@13.229.198.145 "./jenkins/scripts/deliver.sh"'
+                sh 'ssh -o StrictHostKeyChecking=no ec2-user@13.229.198.145 "java -version"'
             }
             
             sleep time: 1, unit: 'MINUTES'
