@@ -22,7 +22,7 @@ node {
         }
 
         stage('Deploy') {
-            sshagent(['ec2-access']) {
+            withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access')]) {
 
                 sh 'ssh ec2-user@13.229.198.145 'bash -s' < ./jenkins/scripts/deliver.sh'
             }
