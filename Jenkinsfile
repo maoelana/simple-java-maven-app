@@ -21,11 +21,10 @@ node {
             input 'Lanjutkan ke tahap Deploy?'
         }
 
-        stage('Deploy') {
-            sh './jenkins/scripts/deliver.sh'
-            
+        stage('Deploy') {            
             withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access', keyFileVariable: 'SSH_KEY')]) {
-                sh 'scp -o StrictHostKeyChecking=no -i "$SSH_KEY" target/my-app-1.0-SNAPSHOT.jar ec2-user@47.129.228.92:/apps'
+                sh 'ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" ec2-user@18.141.145.145 "./jenkins/scripts/deliver.sh"'
+                sh 'scp -o StrictHostKeyChecking=no -i "$SSH_KEY" target/my-app-1.0-SNAPSHOT.jar ec2-user@18.141.145.145:/apps'
             }
 
             sleep time: 1, unit: 'MINUTES'
