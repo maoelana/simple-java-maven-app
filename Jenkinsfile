@@ -22,12 +22,10 @@ node {
         }
         
         stage('Deploy') {            
-            // withCredentials([sshUserPrivateKey(credentialsId: 'aws-key', keyFileVariable: 'AWS_KEY')]) {
-            //     sh 'ssh ec2-user@18.141.145.145'
-            // }
-
             sshagent (credentials: [ 'aws-key' ]) {
-                sh 'ssh -vvv -o StrictHostKeyChecking=no ec2-user@18.141.145.145 uname -a'
+                sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "./jenkins/scripts/deliver.sh"'
+                sh 'scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar ec2-user@18.141.145.145:/apps'
+                sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "java -jar /apps/my-app-1.0-SNAPSHOT.jar"'
             }
 
             sleep time: 1, unit: 'MINUTES'
