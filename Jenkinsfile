@@ -24,8 +24,7 @@ node {
         stage('Deploy') {            
             sshagent (credentials: [ 'aws-key' ]) {
                 sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "sudo chown -R ec2-user:ec2-user /apps && sudo chmod -R 755 /apps"'
-                sh 'scp -o StrictHostKeyChecking=no -r * ec2-user@18.141.145.145:/apps'
-                // sh 'scp -o StrictHostKeyChecking=no ./target/my-app-1.0-SNAPSHOT.jar ec2-user@18.141.145.145:/apps'
+                sh 'scp -o StrictHostKeyChecking=no ./target/my-app-1.0-SNAPSHOT.jar ec2-user@18.141.145.145:/apps'
             }
 
             sleep time: 1, unit: 'MINUTES'
