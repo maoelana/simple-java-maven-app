@@ -23,8 +23,8 @@ node {
         
         stage('Deploy') {            
             sshagent (credentials: [ 'aws-key' ]) {
-                sh 'scp -o StrictHostKeyChecking=no . ec2-user@18.141.145.145:/apps'
-                // sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "cd /apps && ./deliver.sh"'
+                sh 'scp -o StrictHostKeyChecking=no -r . ec2-user@18.141.145.145:/apps'
+                sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "cd /apps && ./jenkins/scripts/deliver.sh"'
                 // sh 'scp -o StrictHostKeyChecking=no ./target/my-app-1.0-SNAPSHOT.jar ec2-user@18.141.145.145:/apps'
                 // sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "java -jar /apps/target/my-app-1.0-SNAPSHOT.jar"'
             }
