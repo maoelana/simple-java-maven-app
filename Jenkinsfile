@@ -1,8 +1,6 @@
 node {
     // Mendapatkan Docker image dan menjalankan perintah di dalamnya
-    docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside('
-        -v /etc/passwd:/etc/passwd -v /var/lib/jenkins/.ssh/:/var/lib/jenkins/.ssh/
-    ') {
+    docker.image('maven:3.9.9-eclipse-temurin-17-alpine').inside(" -v /etc/passwd:/etc/passwd -v /var/lib/jenkins/.ssh/:/var/lib/jenkins/.ssh/ ") {
         
         stage('Checkout') {
             // Melakukan checkout kode dari repository Git
