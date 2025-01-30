@@ -23,6 +23,7 @@ node {
 
         stage('Deploy') {            
             withCredentials([sshUserPrivateKey(credentialsId: 'aws-key', keyFileVariable: 'AWS_KEY')]) {
+                sh 'apt-get update && apt-get install -y openssh-client'
                 sh 'ssh ec2-user@18.141.145.145'
             }
 
