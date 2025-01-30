@@ -1,6 +1,6 @@
 node {
     // Mendapatkan Docker image dan menjalankan perintah di dalamnya
-    docker.image('maven:3.9.9-eclipse-temurin-17-alpine-1').inside('-v agent-data:/var/agent_home') {
+    docker.image('maven:3.9.9-eclipse-temurin-17-alpine-1').inside('-v "$HOME":/home') {
         
         stage('Checkout') {
             // Melakukan checkout kode dari repository Git
@@ -23,10 +23,10 @@ node {
         
         stage('Deploy') {            
             sshagent (credentials: [ 'aws-key' ]) {
-                sh 'scp -o StrictHostKeyChecking=no -r . ec2-user@18.141.145.145:/apps'
-                sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "cd /apps && ./jenkins/scripts/deliver.sh"'
+                // sh 'scp -o StrictHostKeyChecking=no -r . ec2-user@18.141.145.145:/apps'
+                // sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "cd /apps && ./jenkins/scripts/deliver.sh"'
                 // sh 'scp -o StrictHostKeyChecking=no ./target/my-app-1.0-SNAPSHOT.jar ec2-user@18.141.145.145:/apps'
-                // sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "java -jar /apps/target/my-app-1.0-SNAPSHOT.jar"'
+                sh 'ssh -o StrictHostKeyChecking=no ec2-user@18.141.145.145 "pwd"'
             }
 
             sleep time: 1, unit: 'MINUTES'
