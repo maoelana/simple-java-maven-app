@@ -25,7 +25,7 @@ node {
             sh './jenkins/scripts/deliver.sh'
             
             withCredentials([sshUserPrivateKey(credentialsId: 'ec2-access', keyFileVariable: 'SSH_KEY')]) {
-                sh 'scp -o StrictHostKeyChecking=no -i "$SSH_KEY" target/my-app-1.0-SNAPSHOT.jar ec2-user@54.179.37.98:/apps'
+                sh 'scp -o StrictHostKeyChecking=no -i "$SSH_KEY" target/my-app-1.0-SNAPSHOT.jar ec2-user@47.129.228.92:/apps'
             }
 
             sleep time: 1, unit: 'MINUTES'
